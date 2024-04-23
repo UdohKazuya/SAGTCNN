@@ -1,0 +1,91 @@
+\chapter{実験}
+提案手法の有効性を調べるため, 既存手法と提案手法のノイズ除去性能を比べた. その際, 生成ノイズを加算したグレースケール画像に対するノイズ除去性能を比較した.
+
+\section{実験設定}
+概ねGTCNNの設定に従って実験を行う\cite{GTCNN}.
+
+\subsection{ネットワーク構成}
+既存手法GTCNNのCBR層の数を1つに固定した. 提案手法である自己注意機構を追加したGTCNN(Self-Attention GTCNN: 以後SAGTCNN)はGTLの4層目のCNNを自己注意に置き換えたSAGTCNN-S4, ミドル層に自己注意を追加したSAGTCNN-M, そのどちらの変更を加えたSAGTCNN-S4Mの3種類のパターンで比較を行った. GTCNNおよびSAGTCNNのGTLは共に同じ段数($S=4$)で構成した.
+
+\subsection{学習設定}
+データセットにはDIV2Kを用いる. DIV2Kの全画像から$192 \times 192$画素のパッチをストライド192画素で切り出したものを学習画像とする. 学習のエポック数は600とする.
+
+\subsection{評価手法}
+既存手法と同様に, ノイズ除去評価手法において一般的に使われるガウシアンノイズを原画像に加算した画像（生成ノイズ画像）から原画像を推定する. ノイズ除去結果の評価はPSNRを用いる. 原画像にはSet12, BSD68, Urban100のデータセットを使用した. 従来手法であるGTCNNの評価値は, 論文に記載されている値を引用した.
+
+\section{実験結果}
+表\ref{tab:sigma50}に示すように$\sigma=50$での性能比較の結果, 今回SAGTCNNで試したどのパターンにおいても既存手法の性能を上回ることはなかった. SAGTCNNの中で最も性能の高いSAGTCNN-S4とGTCNNを$\sigma$の値を30, 50, 70と変更して比較しても, 表\ref{tab:sigmaxx}の通り性能の向上は見られなかった. SAGTCNN-MはUrban100のデータセットにて他の手法と比べて性能が特に悪い. 出力画像の一枚を比べると他の手法より画像が劣化していることが図\ref{fig:Outputs}から分かる. 
+
+\begin{table}[htbp]
+\centering
+\caption{生成ノイズ$\sigma=50$におけるGTCNNとSAGTCNNの性能比較 \label{tab:sigma50}}
+ \begin{tabular}{|l||c|c|c|}
+ \hline
+ 手法 & Set12 & BSD68 & Urban100 \\ \hline \hline
+ GTCNN         & $\bm{27.56}$ & $\bm{26.46}$ & $\bm{26.97}$ \\ \hline
+ SAGTCNN-S4    & 27.55 & 26.43 & 26.95 \\ \hline
+ SAGTCNN-M     & 27.55 & 26.29 & 23.48 \\ \hline
+ SAGTCNN-S4M   & 27.47 & 26.38 & 26.84 \\ \hline
+ \end{tabular}
+\end{table}
+
+
+\begin{table}[htbp]
+\centering
+\caption{生成ノイズの$\sigma$の値を変更した時のGTCNNとSAGTCNNの性能比較 \label{tab:sigmaxx}}
+\setlength\tabcolsep{1.5pt}
+ \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+\hline
+\multirow{2}{*}{手法} &  \multicolumn{3}{c|}{Set12} &  \multicolumn{3}{c|}{BSD68} &  \multicolumn{3}{c|}{Urban100}   \\
+\cline{2-10}
+ & 30 & 50 & 70  & 30 & 50 & 70  & 30 & 50 & 70 \\
+\hline \hline
+GTCNN & 29.80 
+            & $\bm{27.56}$ 
+                & $\bm{26.08}$ 
+                    
+                    & $\bm{28.53}$ 
+                        & $\bm{26.46}$ 
+                            & $\bm{25.21}$ 
+                            
+                                & 29.43 
+                                    & $\bm{26.97}$ 
+                                        & $\bm{25.36}$ \\ \hline
+SAGTCNN-S4    & $\bm{29.81}$ 
+                &  27.55 
+                    & 26.07 
+                    
+                    & 28.52 
+                        & 26.43 
+                            & 25.19 
+                                
+                                & $\bm{29.46}$ 
+                                    & 26.95 
+                                        & 25.34 \\ \hline
+ \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{SAGTCNNの学習画像を増加させた際の変化:NormalはDIV2Kのみ. IncreaseはDIV2K+SSID \label{tab:manyImage}}
+ \begin{tabular}{|l||c|c|c|}
+ \hline
+ 手法 & Set12 & BSD68 & Urban100 \\ \hline \hline
+ SAGTCNN-S4 (Normal)        & 27.55 & 26.43 & 26.95 \\ \hline
+ SAGTCNN-S4 (Increase)     & 27.52 & 26.43 & 26.90 \\ \hline
+ \end{tabular}
+\end{table}
+
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[scale=1.0]{figures/Outputs.png}
+\caption{出力画像比較　\label{fig:Outputs}}
+\end{figure}
+
+\newpage
+\section{考察}
+実験ではGTCNNに対しSAGTCNNは生成ノイズ$\sigma = 30$の場合においてノイズ除去性能をわずかに上回った. ものの, 明確な優位性を示すことはできなかった. 過学習の懸念から学習画像枚数を増やしてみたものの, 表\ref{tab:manyImage}の通り, 性能が向上することはなかった. ノイズ除去性能の向上が見られなかった理由はいくつか考えられる. まず一般的に自己注意を用いる手法では大規模なデータセットを用いており, 今回の実験で使用した学習用のデータセットでは学習画像枚数が少ない可能性が考えられる. また自己注意は広域のコンテクストを捉えることを得意とするが, 今回GTLの4段目という画像サイズの小さい領域でしか自己注意を用いておらず, 本来の性能が活かせなかったことが考えられる. 最後に画像に自己注意を用いる際にViTなどで行われている位置埋め込みを本実験では行っていないため, コンテクストの抽出が上手く行えなかった可能性が考えられる. 
+
+

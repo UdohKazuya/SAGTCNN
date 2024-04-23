@@ -1,0 +1,56 @@
+\documentclass{jsarticle}
+\usepackage{amsmath,amssymb,amsfonts}
+
+\begin{document}
+二次方程式の解の公式は
+\begin{equation}
+x = \frac{-b\pm\sqrt{b^2-4ac}}{2a}
+\end{equation}
+\end{document}
+
+
+
+
+アナコンダプロンプトでコード動かすときはベース環境でやるな！！！！！！！！
+
+
+python main.py confs/GTCNN experiment.color=1 experiment.test_only=True dataset.test_set=[Set12,BSD68,Urban100] dataset.test_root=E:\Study\GTCNN_train\Datasets\test\ experiment.best_model=SAGTCNN_g_50_D1_down4
+
+python main.py confs/GTCNN experiment.color=1 experiment.test_only=True experiment.best_model=Gray50_GTCNN_D1 dataset.test_set=[Set12,BSD68,Urban100] dataset.test_root=E:\Study\GTCNN_train\Datasets\test\
+
+ドライブ移動
+cd /d E:
+
+改造したGTCNNのPath
+cd E:\Study\22.B.Udou\21.M.Imai-main\DN
+
+純正GTCNNのPath
+cd E:\Study\real.21.M.Imai-main\DN
+
+python main.py confs/GTCNN experiment.color=1 experiment.random_corp=True experiment.large_size=512 experiment.stride=512 dataset.test_set=[Set12,BSD68,Urban100] dataset.train_set=[DIV2K] dataset.val_set=[BSD400] dataset.test_root=E:\Study\GTCNN_train\Datasets\test\ dataset.train_root=E:\Study\GTCNN_train\Datasets\train\ dataset.val_root=E:\Study\GTCNN_train\Datasets\val\ experiment.epoch_num=600
+
+experiment.sigma=50 experiment.comet_disabled=False experiment.saveImage=True experiment.save_checkpoint=True 
+
+
+
+experiment.test_only=True
+experiment.comet_disabled=False
+experiment.saveImage=True
+experiment.best_model=SAGTCNN_g_50_D1_midSA
+
+#### RealNoise ##########
+cd E:\Study\22.B.Udou\21.M.Imai-main\RN
+
+python main.py confs/GTCNN experiment.color=3 experiment.random_corp=True experiment.large_size=512 experiment.stride=512 dataset.test_set=[SSID_patched] dataset.train_set=[SSID] dataset.val_set=[SSID] dataset.test_root=D:\Study\GTCNN_train\Datasets\test\ dataset.train_root=D:\Study\GTCNN_train\Datasets\train\ dataset.val_root=D:\Study\GTCNN_train\Datasets\val\ experiment.epoch_num=600
+
+
+・Datasets
+test
+ -Set12,BSD68,Urban100
+train
+ -DIV2K
+made train
+ -DIV2KandSIDD
+・model
+SAGTCNN_g_50_D1_midSA
+SAGTCNN_g_50_D1_down4

@@ -1,0 +1,118 @@
+\documentclass[a4paper,12pt,report]{jsbook}
+
+%ページに綴じ代をつくる
+\setlength{\textwidth}{38zw}
+\setlength{\oddsidemargin}{0.5cm}
+
+
+%共通設定
+\renewcommand{\bibname}{参考文献}
+\renewcommand{\theenumi}{\roman{enumi}}
+\usepackage{makeidx}
+\pagestyle{headings}
+\usepackage[dvipdfmx]{graphicx}
+\pagenumbering{roman}
+\usepackage{bm}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+%\usepackage{math}
+
+
+
+%枠関連の設定
+\usepackage{fancybox}
+\usepackage{framed}
+\newenvironment{longbox}{%
+  \def\FrameCommand{\fboxsep=\FrameSep \fbox}%
+  \MakeFramed {\FrameRestore}}%
+ {\endMakeFramed}
+
+\makeindex
+
+\begin{document}
+
+
+
+%
+% 表紙
+%
+\begin{titlepage}
+\begin{center}
+{\large 令和04度卒業論文\\}
+\vspace{2.5cm}
+{\fontsize{36pt}{40pt}\selectfont%
+ 自己注意による\\
+ コンテクスト抽出を\\用いた\\画像ノイズ除去手法\\}
+\vspace{3cm}
+{\large%
+  千葉工業大学　先進工学部　\\
+  \vspace{3mm}19C3020　有働　和矢\\
+  \vspace{3cm}指導教員　宮田　高道　教授\\
+  \vspace{1cm}提出日　令和2023年1月17日\\
+}%各所にあるvspaceの値を調整して1ページに収まるようにしましょう．
+\end{center}
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%和文要旨%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{titlepage}
+\begin{longbox}
+\begin{center}
+ {\Huge 自己注意によるコンテクスト抽出を用いた画像ノイズ除去手法\\}
+ {\large%
+   \vspace{3mm}%
+   19C03020　有働　和矢\\
+ }
+\end{center}
+{\bf 概要：}%
+Transfomerに代表される自己注意機構を利用することが画像処理の分野で拡がっている. 画像ノイズ除去タスクにおいて長距離間の依存関係を認識できる自己注意機構を応用することにより, 画像のコンテクストを把握しながらノイズ除去を行うことが可能となるため, 高いノイズ除去性能が実現できることが明らかになっている. 一方でコンテクスト抽出と（抽出したコンテクストに基づく）ノイズ除去の二つのタスクを異なる二種類のCNNで行うことで効率的にノイズ除去を行えるGTCNNと呼ばれる手法が提案されており, 画像ノイズ除去タスクにおいてコンテクストの把握とノイズ除去処理のすべてを自己注意機構のみで行うことはCNNと同様に効率的でない可能性がある. そこで本研究ではGTCNNのコンテクストを抽出するCNNを自己注意に置き換えたSAGTCNNを提案する. 実験結果より, GTCNNと比較して高いノイズ除去性能またはより効率的なノイズ除去性能を得ることは叶わなかった. 本実験では画像サイズの小さい領域でしか自己注意を用いなかったり, ViT等の画像処理に自己注意を活用する手法で行われている位置埋め込みを行なっていないなどの理由から自己注意が本来の性能を発揮できなかった可能性が考えられる.
+\\
+\\
+\end{longbox}
+\end{titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\bibliographystyle{junsrt}
+%\maketitle
+\setcounter{tocdepth}{3}
+\tableofcontents
+
+
+\newpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+%%%%%%%%%%%%%%%%%%%%%%%ここから本文を書きましょう%%%%%%%%%%%%%%%
+%各章毎にファイルを分割して\inputで読み込ませると管理が楽
+\include{chap01}
+\include{chap02}
+\include{chap03}
+\include{chap04}
+\include{chap05}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter*{謝辞}
+\addcontentsline{toc}{chapter}{謝辞}
+本研究を進めるにあたり, 様々な助言および御指導を賜った宮田高道教授に心より感謝いたします. またGTCNNのコードをお借りした今井海斗氏にも深く感謝いたします. 研究室の同輩や先輩の方々にも助けて頂きました感謝いたします.
+
+\nocite{*}
+\cleardoublepage
+\pagestyle{plain}
+
+\bibliography{ref}
+
+
+%図の一覧を出力する場合
+%\listoffigures
+
+%表の一覧を出力する場合
+%\listoftables
+
+\end{document}
