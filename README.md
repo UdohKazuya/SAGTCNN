@@ -13,16 +13,27 @@ root/
 
 ## Dependencies
 ・Python 3 (Recommend to use Anaconda)
+
 ・numpy
+
 ・PyTorch == 1.12
+
 ・torchvision
+
 ・NVIDIA GPU + CUDA(==11.6)
+
 ・opencv
+
 ・tqdm
+
 ・PyYAML
+
 ・OmegaConf
+
 ・Comet.ml,(for logging)
+
 
 ## Datesets
 こちらのURLからダウンロードしてください
+
 https://github.com/mdipcit/GTCNN/tree/master/Dataset
