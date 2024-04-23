@@ -7,9 +7,9 @@ B22 有働のSAGTCNNのリポジトリ
 ## フォルダの説明
 root/
 
-├ 21.M.Imai-main/　　　　　　　　　　　　　:今井先輩のリポジトリをコピー
+├ 　DN/　　　　　　　　　　　　 :SAGTCNNでの生成ノイズ除去
 
-│　　　　　└　DN/　　　　　　　　　　　　:SAGTCNNでの生成ノイズ除去
+└ Publication/　　　　　　　 　:卒論pdfとTex, および発表資料
 
 ## Dependencies
 ・Python 3 (Recommend to use Anaconda)
