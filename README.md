@@ -7,31 +7,22 @@ B22 有働のSAGTCNNのリポジトリ
 ## フォルダの説明
 root/
 
-├ 21.M.Imai-main/　　　　　　　　　　　　　:今井先輩のリポジトリをコピー
+├ 　DN/　　　　　　　　　　　　 :SAGTCNNでの生成ノイズ除去
 
-│　　　　　└　DN/　　　　　　　　　　　　:SAGTCNNでの生成ノイズ除去
+└ Publication/　　　　　　　　 :卒論pdfとTex, および発表資料
 
-│　　　　　└　Pub/修論　　　　　　　　　　:今井先輩の修論Tex
+## Dependencies
+・Python 3 (Recommend to use Anaconda)
+・numpy
+・PyTorch == 1.12
+・torchvision
+・NVIDIA GPU + CUDA(==11.6)
+・opencv
+・tqdm
+・PyYAML
+・OmegaConf
+・Comet.ml,(for logging)
 
-│　　　　　└  RN/　　　　　　　　　　　　　:GTCNNでのリアルノイズ除去（手を付けてない）
-
-│　　　　　└　etc...　　　　　　　　　　　　:その他ファイル
-
-├ Publication/　　　　　　　　　　　　　　　:卒論pdfとTex, および発表資料
-
-## ソースコードの動かし方
-
-雑な解説
-
-1. このリポジトリをクローンする。
-2. DN/がカレントディレクトリになるように移動。
-3. NASの今井先輩のフォルダからDetasetsというフォルダをダウンロード(60GB)。
-4. main.py　を動かす。その際、には以下の呪文を唱える。
-
-・trainの場合
-
-python main.py confs/GTCNN experiment.color=1 experiment.random_corp=True experiment.large_size=512 experiment.stride=512 dataset.test_set=[Set12,BSD68,Urban100] dataset.train_set=[DIV2K] dataset.val_set=[BSD400] dataset.test_root={testのパス} dataset.train_root={trainのパス} dataset.val_root={valのパス} experiment.epoch_num=600 experiment.sigma=50
-
-・testの場合
-
-python main.py confs/GTCNN experiment.color=1 experiment.test_only=True dataset.test_set=[Set12,BSD68,Urban100] dataset.test_root={testのパス} experiment.best_model={動かしたいモデルのパス}
+## Datesets
+こちらのURLからダウンロードしてください
+https://github.com/mdipcit/GTCNN/tree/master/Dataset
