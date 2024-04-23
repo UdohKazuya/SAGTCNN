@@ -8,6 +8,7 @@ B22 有働のSAGTCNNのリポジトリ
 root/
 
 ├ 　DN/　　　　　　　　　　　　  :SAGTCNNでの生成ノイズ除去
+
 └   Publication/　　　　　　　　:卒論pdfとTex, および発表資料
 
 ## ソースコードの動かし方
