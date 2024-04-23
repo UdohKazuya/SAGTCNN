@@ -7,17 +7,8 @@ B22 有働のSAGTCNNのリポジトリ
 ## フォルダの説明
 root/
 
-├ 21.M.Imai-main/　　　　　　　　　　　　　:今井先輩のリポジトリをコピー
-
-│　　　　　└　DN/　　　　　　　　　　　　:SAGTCNNでの生成ノイズ除去
-
-│　　　　　└　Pub/修論　　　　　　　　　　:今井先輩の修論Tex
-
-│　　　　　└  RN/　　　　　　　　　　　　　:GTCNNでのリアルノイズ除去（手を付けてない）
-
-│　　　　　└　etc...　　　　　　　　　　　　:その他ファイル
-
-├ Publication/　　　　　　　　　　　　　　　:卒論pdfとTex, および発表資料
+├ 　DN/　　　　　　　　　　　　  :SAGTCNNでの生成ノイズ除去
+└   Publication/　　　　　　　　:卒論pdfとTex, および発表資料
 
 ## ソースコードの動かし方
 
